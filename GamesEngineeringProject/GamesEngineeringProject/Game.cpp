@@ -15,7 +15,7 @@ Game::Game() :
 	m_window{ sf::VideoMode{ 1000, 800, 32U }, "Games Engineering Project" },
 	m_exitGame{false} //when true game will exit
 {
-	
+	theMap.generateMap(MapSize::Ten);
 }
 
 /// <summary>
@@ -84,6 +84,21 @@ void Game::processKeys(sf::Event t_event)
 	{
 		m_exitGame = true;
 	}
+
+	if (sf::Keyboard::Numpad1 == t_event.key.code)
+	{
+		theMap.generateMap(MapSize::Ten);
+	}
+
+	if (sf::Keyboard::Numpad2 == t_event.key.code)
+	{
+		theMap.generateMap(MapSize::Hundred);
+	}
+
+	if (sf::Keyboard::Numpad3 == t_event.key.code)
+	{
+		theMap.generateMap(MapSize::Thousand);
+	}
 }
 
 /// <summary>
@@ -95,9 +110,7 @@ void Game::update(sf::Time t_deltaTime)
 	if (m_exitGame)
 	{
 		m_window.close();
-	}
-
-	
+	}	
 }
 
 /// <summary>
@@ -107,7 +120,7 @@ void Game::render()
 {
 	m_window.clear(sf::Color::Black);
 
-	
+	theMap.draw(m_window);
 
 	m_window.display();
 }

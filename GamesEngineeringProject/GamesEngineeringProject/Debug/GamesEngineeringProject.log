@@ -1,5 +1,2 @@
 ﻿  Game.cpp
-  main.cpp
-C:\Users\neron\OneDrive\Documents\GitHub\GamesEngineeringProject\GamesEngineeringProject\GamesEngineeringProject\main.cpp(32,22): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  Generating Code...
   GamesEngineeringProject.vcxproj -> C:\Users\neron\OneDrive\Documents\GitHub\GamesEngineeringProject\GamesEngineeringProject\Debug\GamesEngineeringProject.exe

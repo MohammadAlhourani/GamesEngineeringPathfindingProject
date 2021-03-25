@@ -2,6 +2,7 @@
 #define GAME_HPP
 
 #include <SFML/Graphics.hpp>
+#include "Map.h"
 
 
 class Game
@@ -26,6 +27,7 @@ private:
 
 	bool m_exitGame; // control exiting game
 
+	Map theMap;
 };
 
 #endif // !GAME_HPP
