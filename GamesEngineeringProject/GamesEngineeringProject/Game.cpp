@@ -12,7 +12,7 @@
 /// setup the window properties
 /// </summary>
 Game::Game() :
-	m_window{ sf::VideoMode{ 1000, 800, 32U }, "Games Engineering Project" },
+	m_window{ sf::VideoMode{ SCREEN_WIDTH, SCREEN_HEIGHT, 32U }, "Games Engineering Project" },
 	m_exitGame{false} //when true game will exit
 {
 	theMap.generateMap(MapSize::Ten);
@@ -98,6 +98,11 @@ void Game::processKeys(sf::Event t_event)
 	if (sf::Keyboard::Numpad3 == t_event.key.code)
 	{
 		theMap.generateMap(MapSize::Thousand);
+	}
+
+	if (sf::Keyboard::Numpad0 == t_event.key.code)
+	{
+		
 	}
 }
 

@@ -1,2 +1,73 @@
-﻿  Game.cpp
+﻿  Enemy.cpp
+  Game.cpp
+  main.cpp
+C:\Users\neron\OneDrive\Documents\GitHub\GamesEngineeringProject\GamesEngineeringProject\GamesEngineeringProject\main.cpp(32,22): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Map.cpp
+C:\Users\neron\OneDrive\Documents\GitHub\GamesEngineeringProject\GamesEngineeringProject\GamesEngineeringProject\Map.cpp(58,64): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\neron\OneDrive\Documents\GitHub\GamesEngineeringProject\GamesEngineeringProject\GamesEngineeringProject\Map.cpp(58,38): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\neron\OneDrive\Documents\GitHub\GamesEngineeringProject\GamesEngineeringProject\GamesEngineeringProject\Map.cpp(67,65): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\neron\OneDrive\Documents\GitHub\GamesEngineeringProject\GamesEngineeringProject\GamesEngineeringProject\Map.cpp(67,44): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\neron\OneDrive\Documents\GitHub\GamesEngineeringProject\GamesEngineeringProject\GamesEngineeringProject\Map.cpp(85,64): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\neron\OneDrive\Documents\GitHub\GamesEngineeringProject\GamesEngineeringProject\GamesEngineeringProject\Map.cpp(85,38): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\neron\OneDrive\Documents\GitHub\GamesEngineeringProject\GamesEngineeringProject\GamesEngineeringProject\Map.cpp(93,65): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\neron\OneDrive\Documents\GitHub\GamesEngineeringProject\GamesEngineeringProject\GamesEngineeringProject\Map.cpp(93,44): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\neron\OneDrive\Documents\GitHub\GamesEngineeringProject\GamesEngineeringProject\GamesEngineeringProject\Map.cpp(112,64): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\neron\OneDrive\Documents\GitHub\GamesEngineeringProject\GamesEngineeringProject\GamesEngineeringProject\Map.cpp(112,38): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\neron\OneDrive\Documents\GitHub\GamesEngineeringProject\GamesEngineeringProject\GamesEngineeringProject\Map.cpp(120,65): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\neron\OneDrive\Documents\GitHub\GamesEngineeringProject\GamesEngineeringProject\GamesEngineeringProject\Map.cpp(120,44): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\neron\OneDrive\Documents\GitHub\GamesEngineeringProject\GamesEngineeringProject\GamesEngineeringProject\Map.cpp(157,35): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\neron\OneDrive\Documents\GitHub\GamesEngineeringProject\GamesEngineeringProject\GamesEngineeringProject\Map.cpp(189,23): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\neron\OneDrive\Documents\GitHub\GamesEngineeringProject\GamesEngineeringProject\GamesEngineeringProject\Map.cpp(194,31): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\neron\OneDrive\Documents\GitHub\GamesEngineeringProject\GamesEngineeringProject\GamesEngineeringProject\Map.cpp(195,44): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\neron\OneDrive\Documents\GitHub\GamesEngineeringProject\GamesEngineeringProject\GamesEngineeringProject\Map.cpp(215,16): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\neron\OneDrive\Documents\GitHub\GamesEngineeringProject\GamesEngineeringProject\GamesEngineeringProject\Map.cpp(217,16): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+  Generating Code...
   GamesEngineeringProject.vcxproj -> C:\Users\neron\OneDrive\Documents\GitHub\GamesEngineeringProject\GamesEngineeringProject\Debug\GamesEngineeringProject.exe

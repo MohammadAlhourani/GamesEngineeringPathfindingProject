@@ -15,30 +15,38 @@ public:
 
 	void setPosition(sf::Vector2f t_pos);
 
+	void addNeighbour(Node* t_node);
+
+	std::vector<Node*>* getNeighbours();
+
 	sf::Vector2f getPosition();
 
 	Node* getPrevious();
 
-private:
-
 	int x;
 	int y;
 
-	float size;
-
-	bool passable;
+	float fcost;
 
 	float pathCost;
 
 	float heuristic;
 
-	float fcost;
-	
-	sf::Vector2f position;
-
-	std::vector<Node*> neighbours;
+	bool passable;
 
 	Node* previous;
+
+	bool marked = false;
+
+private:
+
+	float size;	
+
+	sf::Vector2f position;
+
+	std::vector<Node*>* neighbours;
+
+	
 
 };
 

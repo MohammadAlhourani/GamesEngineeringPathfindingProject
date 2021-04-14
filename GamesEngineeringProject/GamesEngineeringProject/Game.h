@@ -3,7 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "Map.h"
-
+#include "Globals.h"
 
 class Game
 {
