@@ -13,22 +13,7 @@ Map::~Map()
 Node* Map::getNode(int t_x, int t_y)
 {
 
-	int nodeIndex = 0;
-
-	for (int x = 0; x < Row; x++)
-	{
-		for (int y = 0; y < Col; y++)
-		{
-			if (t_x == x && t_y == y)
-			{
-				return Nodes.at(nodeIndex);
-			}
-
-			nodeIndex++;
-		}
-	}
-
-	return nullptr;
+	return Nodes.at(int(t_y + (t_x * Row)));
 }
 
 Node* Map::getNode(sf::Vector2f position)
@@ -122,7 +107,7 @@ void Map::generateMap(MapSize t_size)
 		setupWalls(t_size);
 
 		square.setSize(sf::Vector2f(SCREEN_WIDTH / Row, SCREEN_HEIGHT / Col));
-	
+		square.setOutlineThickness(0);
 		break;
 	}
 	default:
@@ -137,7 +122,7 @@ void Map::draw(sf::RenderWindow& window)
 	{
 		square.setPosition(node->getPosition());
 
-		if (node->passable == false)
+		if (node->passable == true)
 		{
 			square.setFillColor(sf::Color::Red);
 		}
@@ -319,14 +304,81 @@ void Map::setupWalls(MapSize t_size)
 	{
 	case MapSize::Ten:
 	{
+		for (int i = 0; i < 25; i++)
+		{
+			getNode(5, i)->passable = false;
+		}
+
+		for (int i = 3; i < 27; i++)
+		{
+			getNode(15, i)->passable = false;
+		}
+
+		for (int i = 0; i < 20; i++)
+		{
+			getNode(25, i)->passable = false;
+		}
+
 		break;
 	}
 	case MapSize::Hundred:
 	{
+		for (int i = 0; i < 90; i++)
+		{
+			getNode(15, i)->passable = false;
+		}
+
+		for (int i = 10; i < 80; i++)
+		{
+			getNode(25, i)->passable = false;
+		}
+
+		for (int i = 10; i < 90; i++)
+		{
+			getNode(45, i)->passable = false;
+		}
+
+		for (int i = 15; i < 100; i++)
+		{
+			getNode(60, i)->passable = false;
+		}
+
+		for (int i = 10; i < 80; i++)
+		{
+			getNode(80, i)->passable = false;
+		}
+
+		for (int i = 10; i < 90; i++)
+		{
+			getNode(90, i)->passable = false;
+		}
+
 		break;
 	}
 	case MapSize::Thousand:
 	{
+		//18 walls
+		//4 touching edges
+
+		for (int i = 0; i < 900; i++)
+		{
+			getNode(90, i)->passable = false;
+		}
+
+		for (int i = 100; i < 1000; i++)
+		{
+			getNode(450, i)->passable = false;
+		}
+		for (int i = 0; i < 900; i++)
+		{
+			getNode(650, i)->passable = false;
+		}
+
+		for (int i = 100; i < 1000; i++)
+		{
+			getNode(800, i)->passable = false;
+		}
+
 		break;
 	}
 	default:

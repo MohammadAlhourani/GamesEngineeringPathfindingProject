@@ -32,7 +32,7 @@ public:
 
 	float heuristic;
 
-	bool passable;
+	bool passable = true;
 
 	Node* previous;
 
