@@ -4,6 +4,7 @@
 #include "SFML/Graphics.hpp"
 #include "Node.h"
 #include "Globals.h"
+#include "Enemy.h"
 
 #include <queue>
 #include <list>
@@ -54,6 +55,12 @@ public:
 
 	void setupWalls(MapSize t_size);
 
+	void setupEnemies(MapSize t_size);
+
+	void setEnemyAStar();
+
+	void update(sf::Time t_deltaTime);
+
 	std::vector<Node*> calPath(Node* t_node);
 
 private:
@@ -64,6 +71,8 @@ private:
 	int Col = 0;
 
 	std::vector<Node*> Nodes;
+
+	std::vector<Enemy*> Enemies;
 
 	float nodeSize = 1;
 

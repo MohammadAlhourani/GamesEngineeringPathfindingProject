@@ -13,7 +13,15 @@ public:
 
 	void setPath(std::vector<Node*> t_path);
 
+	void setPosition(sf::Vector2f t_position);
+
+	Node* getNode();
+
+	sf::Vector2f getPosition();
+
 	void update(sf::Time t_deltaTime);
+
+	void move();
 
 	void draw(sf::RenderWindow& window);
 

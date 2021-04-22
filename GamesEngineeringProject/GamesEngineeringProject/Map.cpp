@@ -18,7 +18,13 @@ Node* Map::getNode(int t_x, int t_y)
 
 Node* Map::getNode(sf::Vector2f position)
 {
-    return nullptr;
+
+	int t_x = std::floor(position.x / nodeSize);
+	int t_y = std::floor(position.y / nodeSize);
+
+	int nodeIndex = int(t_y + (t_x * Row));
+
+    return Nodes.at(nodeIndex);
 }
 
 void Map::generateMap(MapSize t_size)
@@ -51,8 +57,12 @@ void Map::generateMap(MapSize t_size)
 
 		setupWalls(t_size);
 
+		setupEnemies(t_size);
+
 		square.setSize(sf::Vector2f(SCREEN_WIDTH / Row, SCREEN_HEIGHT / Col));
 		square.setOutlineThickness(1);
+
+		nodeSize = SCREEN_WIDTH / Row;
 
 		break;
 	}
@@ -133,6 +143,16 @@ void Map::draw(sf::RenderWindow& window)
 
 		window.draw(square);
 	}
+
+	for (auto* enemy : Enemies)
+	{
+		square.setPosition(enemy->getPosition());
+
+		square.setFillColor(sf::Color::Blue);
+
+		window.draw(square);
+	}
+
 }
 
 std::vector<Node*> Map::AstarPathFind(Node* t_start, Node* t_goal)
@@ -140,6 +160,14 @@ std::vector<Node*> Map::AstarPathFind(Node* t_start, Node* t_goal)
 	std::priority_queue<Node*, std::vector<Node*>, CompareNodes> pq;
 
 	std::list<Node*> closedList;
+
+	for (auto* node : Nodes)
+	{
+		node->pathCost = INT_MAX;
+		node->CalculateFCost();
+		node->marked = false;
+		node->previous = nullptr;
+	}
 
 
 	t_start->pathCost = 0;
@@ -155,7 +183,8 @@ std::vector<Node*> Map::AstarPathFind(Node* t_start, Node* t_goal)
 
 		if (currentNode == t_goal)
 		{
-			calPath(t_goal);
+			closedList.clear();
+			return calPath(t_goal);
 		}
 
 		pq.pop();
@@ -196,6 +225,7 @@ std::vector<Node*> Map::AstarPathFind(Node* t_start, Node* t_goal)
 		
 	}
 
+	closedList.clear();
 	return std::vector<Node*>();
 }
 
@@ -212,7 +242,7 @@ int Map::calHueristic(Node* t_node1, Node* t_node2)
 
 void Map::getNeighbour()
 {
-	for (auto* node : Nodes)
+	for (Node* node : Nodes)
 	{
 		// List all neighbors:
 		for (int direction = 0; direction < 9; direction++)
@@ -225,77 +255,20 @@ void Map::getNeighbour()
 			// Check the bounds:
 			if (n_row >= 0 && n_row < Row && n_col >= 0 && n_col < Col)
 			{
-				//find the neighbour nodes by checking the row and col against the nodes row and col in the graph
-				int nodeIndex = int(node->y + (node->x * Row));
+				int nodeIndex = int(n_col + (n_row * Row));
 
-				if (Nodes.at(nodeIndex)->x == n_row &&
-					Nodes.at(nodeIndex)->y == n_col)
+				Node* Temp = Nodes.at(nodeIndex);
+
+				if (Temp->x == n_row &&
+					Temp->y == n_col)
 				{
 					node->addNeighbour(Nodes.at(nodeIndex));
 				}
 			}
 		}
+
+		int x = 0;
 	}
-}
-
-void Map::getNeighbour(Node* t_node)
-{
-	std::vector<Node*> neighbours;
-
-	if (t_node->x - 1 >= 0)
-	{
-		//left 0
-		neighbours.push_back(getNode(t_node->x - 1, t_node->y)); 
-
-		//left down 
-		if (t_node->y - 1 >= 0)
-		{
-			neighbours.push_back(getNode(t_node->x - 1, t_node->y - 1));
-		}
-
-		//left up 
-		if (t_node->y + 1 < Col)
-		{
-			neighbours.push_back(getNode(t_node->x - 1, t_node->y + 1));
-		}
-
-	}
-
-	if (t_node->x + 1 < Row)
-	{
-		//right
-		neighbours.push_back(getNode(t_node->x + 1, t_node->y));
-
-		//right down
-		if (t_node->y - 1 >= 0)
-		{
-			neighbours.push_back(getNode(t_node->x + 1, t_node->y - 1));
-		}
-
-		//right up
-		if (t_node->y + 1 < Col)
-		{
-			neighbours.push_back(getNode(t_node->x + 1, t_node->y + 1));
-		}
-	}
-
-	//down
-	if (t_node->y - 1 >= 0)
-	{
-		neighbours.push_back(getNode(t_node->x, t_node->y - 1));
-	}
-
-	//up
-	if (t_node->y + 1 < Col)
-	{
-		neighbours.push_back(getNode(t_node->x + 1, t_node->y - 1));
-	}
-
-	for (Node* node : neighbours)
-	{
-		t_node->addNeighbour(node);
-	}
-
 }
 
 void Map::setupWalls(MapSize t_size)
@@ -386,29 +359,88 @@ void Map::setupWalls(MapSize t_size)
 	}
 }
 
+void Map::setupEnemies(MapSize t_size)
+{
+	switch (t_size)
+	{
+	case MapSize::Ten:
+	{
+		//5 enemies
+		for (int i = 0; i < 5; i++)
+		{
+			Enemy* newEnemy = new Enemy();
+
+			int row = 20 + rand() % ((25 + 1) - 20);
+			int col = 20 + rand() % ((25 + 1) - 20);
+
+			int nodeIndex = int(col + (row * Row));
+
+			newEnemy->setPosition(Nodes.at(nodeIndex)->getPosition());
+
+			Enemies.push_back(newEnemy);
+		}
+
+
+		break;
+	}
+	case MapSize::Hundred:
+	{
+		//50
+		for (int i = 0; i < 50; i++)
+		{
+			Enemy* newEnemy = new Enemy();
+
+			Enemies.push_back(newEnemy);
+		}
+
+		break;
+	}
+	case MapSize::Thousand:
+	{
+		//500
+		for (int i = 0; i < 500; i++)
+		{
+			Enemy* newEnemy = new Enemy();
+
+			Enemies.push_back(newEnemy);
+		}
+
+		break;
+	}
+	default:
+		break;
+	}
+}
+
+void Map::setEnemyAStar()
+{
+	for (auto* enemy : Enemies)
+	{
+		enemy->setPath(AstarPathFind(getNode(enemy->getPosition()), Nodes.at(1)));
+	}
+}
+
+void Map::update(sf::Time t_deltaTime)
+{
+	for (auto* enemy : Enemies)
+	{
+		enemy->update(t_deltaTime);
+	}
+}
+
 std::vector<Node*> Map::calPath(Node* t_node)
 {
-	std::list<Node*> pathToNode;
 	std::vector<Node*> path;
 
-	pathToNode.push_back(t_node);
+	path.push_back(t_node);
 
 	Node* currentNode = t_node;
 
 	while (currentNode->getPrevious() != nullptr)
 	{
-		pathToNode.push_back(currentNode->getPrevious());
+		path.push_back(currentNode->getPrevious());
 		currentNode = currentNode->getPrevious();
-	}
-
-	pathToNode.reverse();
-	
-	for (auto* node : pathToNode)
-	{
-		//increase path cost here for ambush
-		path.push_back(node);
 	}
 
 	return path;
 }
-

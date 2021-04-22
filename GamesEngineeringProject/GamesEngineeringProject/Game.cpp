@@ -102,7 +102,7 @@ void Game::processKeys(sf::Event t_event)
 
 	if (sf::Keyboard::Numpad0 == t_event.key.code)
 	{
-		
+		theMap.setEnemyAStar();
 	}
 }
 
@@ -116,6 +116,8 @@ void Game::update(sf::Time t_deltaTime)
 	{
 		m_window.close();
 	}	
+
+	theMap.update(t_deltaTime);
 }
 
 /// <summary>
