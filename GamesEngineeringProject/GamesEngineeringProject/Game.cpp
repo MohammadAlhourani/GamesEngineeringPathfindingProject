@@ -100,6 +100,12 @@ void Game::processKeys(sf::Event t_event)
 		theMap.generateMap(MapSize::Thousand);
 	}
 
+
+	if (sf::Keyboard::Numpad4 == t_event.key.code)
+	{
+		theMap.resetEnemies();
+	}
+
 	if (sf::Keyboard::Numpad0 == t_event.key.code)
 	{
 		theMap.setEnemyAStar();

@@ -5,10 +5,14 @@
 #include "Node.h"
 #include "Globals.h"
 #include "Enemy.h"
+#include "ThreadPool.h"
+
+
 
 #include <queue>
 #include <list>
 #include <cstdlib>
+#include <mutex>
 
 enum class MapSize
 {
@@ -45,13 +49,15 @@ public:
 
 	void draw(sf::RenderWindow& window);
 
-	std::vector<Node*> AstarPathFind(Node* t_start, Node* t_goal);
+	//std::vector<Node*> AstarPathFind(Node* t_start, Node* t_goal);
 
-	int calHueristic(Node* t_node1, Node* t_node2);
+	static void AstarPathFind(std::vector<Node*> t_Nodes, Node* t_start, Node* t_goal, Enemy* t_enemy);
+
+	static int calHueristic(Node* t_node1, Node* t_node2);
 
 	void getNeighbour();
 
-	void getNeighbour(Node* t_node);
+	void resetEnemies();
 
 	void setupWalls(MapSize t_size);
 
@@ -61,11 +67,11 @@ public:
 
 	void update(sf::Time t_deltaTime);
 
-	std::vector<Node*> calPath(Node* t_node);
+	static std::vector<Node*> calPath(Node* t_node);
 
 private:
 
-	MapSize size;
+	MapSize m_size = MapSize::Ten;
 
 	int Row = 0;
 	int Col = 0;
@@ -76,7 +82,12 @@ private:
 
 	float nodeSize = 1;
 
+	sf::RectangleShape square;	
 
-	sf::RectangleShape square;
+	ThreadPool m_pool;
+
+	std::vector<std::thread> threads;
+
+	static std::mutex m_mutex;
 };
 

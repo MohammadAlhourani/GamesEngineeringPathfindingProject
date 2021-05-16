@@ -13,6 +13,8 @@ public:
 
 	void setPath(std::vector<Node*> t_path);
 
+	void clearPath();
+
 	void setPosition(sf::Vector2f t_position);
 
 	Node* getNode();
@@ -23,13 +25,13 @@ public:
 
 	void move();
 
-	void draw(sf::RenderWindow& window);
-
 private:
 
 	std::vector<Node*> m_path;
 
 	sf::Vector2f m_position;
+
+	int frameCount = 0;
 
 };
 

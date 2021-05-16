@@ -6,11 +6,17 @@ Enemy::Enemy()
 
 Enemy::~Enemy()
 {
+	clearPath();
 }
 
 void Enemy::setPath(std::vector<Node*> t_path)
 {
 	m_path = t_path;
+}
+
+void Enemy::clearPath()
+{
+	m_path.clear();
 }
 
 void Enemy::setPosition(sf::Vector2f t_position)
@@ -30,7 +36,14 @@ sf::Vector2f Enemy::getPosition()
 
 void Enemy::update(sf::Time t_deltaTime)
 {
-	move();
+	frameCount++;
+
+	if (frameCount >= 15)
+	{
+		move();
+
+		frameCount = 0;
+	}
 }
 
 void Enemy::move()
@@ -41,8 +54,4 @@ void Enemy::move()
 
 		m_path.pop_back();
 	}
-}
-
-void Enemy::draw(sf::RenderWindow& window)
-{
 }
